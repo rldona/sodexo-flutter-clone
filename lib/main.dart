@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:sodexo_clone/src/pages/guest_page.dart';
-// import 'package:sodexo_clone/src/pages/onboarding_page.dart';
-// import 'package:sodexo_clone/src/pages/login_page.dart';
+import 'package:sodexo_clone/src/pages/onboarding_page.dart';
+import 'package:sodexo_clone/src/pages/login_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,8 +17,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: OnboardingPage(),
-      // home: LoginPage(),
-      home: GuestPage(),
+      home: LoginPage(),
+      // home: GuestPage(),
     );
   }
 }
