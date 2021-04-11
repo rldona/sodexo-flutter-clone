@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-
-import 'package:sodexo_clone/src/pages/guest_page.dart';
-import 'package:sodexo_clone/src/pages/onboarding_page.dart';
-import 'package:sodexo_clone/src/pages/login_page.dart';
+import 'package:sodexo_clone/routes/routes.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  // Sacar a una clase getColor()
+  final primaryColor = Color.fromRGBO(40, 56, 151, 0.15);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,10 +14,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        textSelectionTheme: TextSelectionThemeData(
+          selectionColor: primaryColor,
+        ),
       ),
-      // home: OnboardingPage(),
-      home: LoginPage(),
-      // home: GuestPage(),
+      initialRoute: '/onboarding',
+      routes: getAppRoutes(),
+      // onGenerateInitialRoutes: null,
+      // onGenerateRoute: null,
+      // onUnknownRoute: null,
     );
   }
 }

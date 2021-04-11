@@ -47,9 +47,37 @@ class _OnboardingPageState extends State<OnboardingPage> {
             controller: _pageController,
             onPageChanged: onChangedFunction,
             children: <Widget>[
-              Container(child: Center(child: Text("First Screen"))),
-              Container(child: Center(child: Text("Second Screen"))),
-              Container(child: Center(child: Text("Third Screen")))
+              Container(
+                child: Center(
+                  child: Text("First Screen"),
+                ),
+              ),
+              Container(
+                child: Center(
+                  child: Text("Second Screen"),
+                ),
+              ),
+              Container(
+                child: Center(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.blue, // background
+                      onPrimary: Colors.white, // foreground
+                      elevation: 0,
+                      shadowColor: Colors.transparent,
+                    ),
+                    onPressed: () =>
+                        Navigator.pushReplacementNamed(context, '/login'),
+                    child: Text(
+                      'Saltar tutorial',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
           Positioned(
@@ -89,7 +117,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
 class Indicator extends StatelessWidget {
   final int positionIndex, currentIndex;
-
   const Indicator({this.currentIndex, this.positionIndex});
 
   @override
@@ -98,10 +125,12 @@ class Indicator extends StatelessWidget {
       height: 12,
       width: 12,
       decoration: BoxDecoration(
-          border: Border.all(color: Colors.blue),
-          color:
-              positionIndex == currentIndex ? Colors.blue : Colors.transparent,
-          borderRadius: BorderRadius.circular(100)),
+        border: Border.all(color: Color.fromRGBO(40, 56, 151, 1)),
+        color: positionIndex == currentIndex
+            ? Color.fromRGBO(40, 56, 151, 1)
+            : Colors.transparent,
+        borderRadius: BorderRadius.circular(100),
+      ),
     );
   }
 }

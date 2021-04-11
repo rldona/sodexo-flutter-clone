@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key}) : super(key: key);
@@ -8,8 +10,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  var isSwitched = false;
-  var isEnableLoginButton = true;
+  var _isSwitched = false;
+  var _isEnableLoginButton = true;
+  var _passwordVisible = true;
+  var _primaryColor = Color.fromRGBO(40, 56, 151, 1);
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +54,16 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   TextField(
                     obscureText: false,
+                    cursorColor: _primaryColor,
                     decoration: InputDecoration(
                       labelText: 'E-mail',
+                      labelStyle: TextStyle(color: Colors.grey),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey[300]),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: _primaryColor),
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -59,9 +71,30 @@ class _LoginPageState extends State<LoginPage> {
                     height: 30,
                   ),
                   TextField(
-                    obscureText: true,
+                    obscureText: _passwordVisible,
+                    cursorColor: _primaryColor,
                     decoration: InputDecoration(
                       labelText: 'Contraseña',
+                      labelStyle: TextStyle(color: Colors.grey),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey[300]),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: _primaryColor),
+                      ),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _passwordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: _primaryColor,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _passwordVisible = !_passwordVisible;
+                          });
+                        },
+                      ),
                     ),
                   ),
                   Row(
@@ -73,17 +106,20 @@ class _LoginPageState extends State<LoginPage> {
                         width: 30,
                       ),
                       TextButton(
-                        onPressed: () => print('¿Has olvidado tu contraseña?'),
+                        onPressed: () => print(
+                          '¿Has olvidado tu contraseña?',
+                        ),
                         child: Text(
                           '¿Has olvidado tu contraseña?',
                           textAlign: TextAlign.right,
+                          style: TextStyle(color: _primaryColor),
                         ),
                       ),
                     ],
                   ),
                   Container(
-                    margin: EdgeInsets.only(bottom: 25),
-                    padding: EdgeInsets.only(bottom: 5),
+                    margin: EdgeInsets.only(top: 10, bottom: 20),
+                    padding: EdgeInsets.only(bottom: 10),
                     decoration: BoxDecoration(
                       border: Border(
                         bottom: BorderSide(color: Colors.grey[300], width: 1),
@@ -96,67 +132,33 @@ class _LoginPageState extends State<LoginPage> {
                         Text(
                           'Activar inicio de sesión por huella',
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        Switch(
-                          value: isSwitched,
-                          onChanged: (value) {
+                        FlutterSwitch(
+                          width: 50.0,
+                          height: 30.0,
+                          toggleSize: 28.0,
+                          value: _isSwitched,
+                          borderRadius: 20.0,
+                          padding: 1.5,
+                          toggleColor: Color.fromRGBO(255, 255, 255, 1),
+                          activeColor: _primaryColor,
+                          inactiveColor: Colors.grey[300],
+                          onToggle: (val) {
                             setState(() {
-                              isSwitched = value;
-                              print(isSwitched);
+                              _isSwitched = val;
+                              _isEnableLoginButton = !_isEnableLoginButton;
                             });
                           },
-                          activeTrackColor: Colors.blue,
-                          activeColor: Colors.white,
-                          inactiveTrackColor: Colors.grey[300],
                         ),
                       ],
                     ),
                   ),
                   //
                   // Sacar a un componente [LoginPage y GuestPage]
-                  Container(
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          width: double.infinity,
-                          height: 60,
-                          child: ElevatedButton(
-                            onPressed: isEnableLoginButton
-                                ? () => setState(() {
-                                      isEnableLoginButton =
-                                          !isEnableLoginButton;
-                                    })
-                                : null,
-                            child: Text(
-                              'Iniciar sesión',
-                              style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          child: null,
-                          height: 0,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text('¿No tienes cuenta aún?'),
-                            TextButton(
-                              onPressed: () =>
-                                  print('register button pressed!'),
-                              child: Text('Registrate'),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+                  _loginAndRegister(),
                 ],
               ),
             ),
@@ -169,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
           height: 90,
           child: GestureDetector(
             onTap: () {
-              print("Container clicked");
+              Navigator.pushReplacementNamed(context, '/guest');
             },
             child: Container(
               padding: EdgeInsets.only(top: 30),
@@ -186,13 +188,60 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
-                        color: Colors.blue),
+                        color: _primaryColor),
                   ),
                 ],
               ),
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  // sacar a un fichero component e importar
+  Widget _loginAndRegister() {
+    return Container(
+      child: Column(
+        children: [
+          SizedBox(
+            width: double.infinity,
+            height: 60,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: _primaryColor, // background
+                onPrimary: Colors.white, // foreground
+                elevation: 0,
+                shadowColor: Colors.transparent,
+              ),
+              onPressed: () => Navigator.pushReplacementNamed(context, '/home'),
+              child: Text(
+                'Iniciar sesión',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            child: null,
+            height: 0,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('¿No tienes cuenta aún?'),
+              TextButton(
+                onPressed: () => print('register button pressed!'),
+                child: Text(
+                  'Registrate',
+                  style: TextStyle(color: _primaryColor),
+                ),
+              )
+            ],
+          ),
+        ],
       ),
     );
   }

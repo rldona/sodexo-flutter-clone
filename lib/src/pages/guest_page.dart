@@ -8,16 +8,11 @@ class GuestPage extends StatefulWidget {
 }
 
 class _GuestPageState extends State<GuestPage> {
+  var _primaryColor = Color.fromRGBO(40, 56, 151, 1);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Dummy => [Remove AppBar]',
-          style: TextStyle(color: Color.fromRGBO(0, 0, 0, 1)),
-        ),
-        backgroundColor: Color(0xFFFFFFFF),
-      ),
       body: Column(
         children: [
           Container(
@@ -30,7 +25,7 @@ class _GuestPageState extends State<GuestPage> {
                 Container(
                   child: Icon(
                     Icons.credit_card,
-                    color: Colors.blue,
+                    color: _primaryColor,
                     size: 70.0,
                     semanticLabel: 'Text to announce in accessibility modes',
                   ),
@@ -41,32 +36,58 @@ class _GuestPageState extends State<GuestPage> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                Container(
-                  child: Column(
-                    children: [
-                      ElevatedButton(
-                        onPressed: () => print('login pressed!'),
-                        child: Text('Iniciar sesión'),
-                      ),
-                      SizedBox(
-                        child: null,
-                        height: 0,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('¿No tienes cuenta aún?'),
-                          TextButton(
-                            onPressed: () => print('register button pressed!'),
-                            child: Text('Registrate'),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                _loginAndRegister(),
               ],
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // sacar a un fichero component e importar
+  Widget _loginAndRegister() {
+    return Container(
+      padding: EdgeInsets.only(top: 60.0, left: 30.0, right: 30.0),
+      child: Column(
+        children: [
+          SizedBox(
+            width: double.infinity,
+            height: 60,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: _primaryColor, // background
+                onPrimary: Colors.white, // foreground
+                elevation: 0,
+                shadowColor: Colors.transparent,
+              ),
+              onPressed: () =>
+                  Navigator.pushReplacementNamed(context, '/login'),
+              child: Text(
+                'Iniciar sesión',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            child: null,
+            height: 0,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('¿No tienes cuenta aún?'),
+              TextButton(
+                onPressed: () => print('register button pressed!'),
+                child: Text(
+                  'Registrate',
+                  style: TextStyle(color: _primaryColor),
+                ),
+              )
+            ],
           ),
         ],
       ),
