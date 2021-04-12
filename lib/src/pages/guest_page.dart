@@ -13,6 +13,21 @@ class _GuestPageState extends State<GuestPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawerEnableOpenDragGesture: true,
+      drawer: Drawer(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text('Invitado'),
+              ElevatedButton(
+                onPressed: null,
+                child: Text('Close Drawer'),
+              ),
+            ],
+          ),
+        ),
+      ),
       body: Column(
         children: [
           Container(
