@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
           selectionColor: primaryColor,
         ),
       ),
-      initialRoute: '/onboarding',
+      initialRoute: '/home',
       routes: getAppRoutes(),
       // onGenerateInitialRoutes: null,
       // onGenerateRoute: null,

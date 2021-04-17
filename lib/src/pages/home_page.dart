@@ -10,6 +10,65 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   var _primaryColor = Color.fromRGBO(40, 56, 151, 1);
 
+  var _items = [
+    {
+      'type': 'image',
+      'title': 'assets/images/home_card.png',
+      'subtitle': '',
+      'amount': '33,74',
+      'otherText': 'Último cambio:'
+    },
+    {
+      'type': 'amount',
+      'title': 'Saldo disponible',
+      'subtitle': '',
+      'amount': '33,74',
+      'otherText': 'Último cambio:'
+    },
+    {
+      'type': 'button',
+      'title': 'Movimientos',
+      'subtitle': '',
+      'amount': '',
+      'otherText': 'Último cambio:'
+    },
+    {
+      'type': 'header',
+      'title': 'DETALLES',
+      'subtitle': '',
+      'amount': '',
+      'otherText': 'Último cambio:'
+    },
+    {
+      'type': 'text',
+      'title': 'ID tarjeta',
+      'subtitle': '2942546038198445',
+      'amount': '',
+      'otherText': ''
+    },
+    {
+      'type': 'text',
+      'title': 'PIN',
+      'subtitle': 'Mostrar PIN',
+      'amount': '',
+      'otherText': ''
+    },
+    {
+      'type': 'text',
+      'title': 'Estado',
+      'subtitle': 'ACTIVA',
+      'amount': '',
+      'otherText': 'Último cambio:'
+    },
+    {
+      'type': 'button',
+      'title': 'Condiciones de uso',
+      'subtitle': '',
+      'amount': '',
+      'otherText': 'Último cambio:',
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -149,96 +208,142 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Container(
         color: Colors.white,
-        child: ListView(
-          children: [
-            ListTile(
-              leading: Icon(
-                Icons.money_outlined,
-                size: 30,
+        child: ListView.builder(
+          itemCount: _items.length,
+          itemBuilder: (context, index) {
+            final item = _items[index];
+
+            final tileImageWidget = Container(
+              color: Color.fromRGBO(242, 243, 249, 1),
+              padding:
+                  EdgeInsets.only(top: 20, left: 40, right: 40, bottom: 20),
+              child: Image(
+                image: AssetImage(item['title']),
+                fit: BoxFit.cover,
               ),
-              minLeadingWidth: 30,
-              contentPadding:
-                  EdgeInsets.only(top: 20, left: 35, right: 35, bottom: 20),
-              title: Text(
-                'Saldo disponible',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w300,
+            );
+
+            final tileTextWidget = Column(
+              children: [
+                ListTile(
+                  title: Text(
+                    item['title'],
+                    style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 16,
+                    ),
+                  ),
+                  subtitle: item['otherText'].length > 0
+                      ? Text(item['otherText'])
+                      : null,
+                  trailing: Text(
+                    item['subtitle'],
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                  minLeadingWidth: 30,
+                  contentPadding:
+                      EdgeInsets.only(top: 15, left: 35, right: 35, bottom: 15),
+                  onTap: null,
                 ),
-              ),
-              trailing: Text(
-                '33,74 €',
-                style: TextStyle(
-                  fontSize: 18,
+                Divider(
+                  height: 1,
+                  color: Colors.grey[500],
                 ),
-              ),
-              onTap: null,
-            ),
-            Divider(
-              height: 1,
-              color: Colors.grey[500],
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.money_outlined,
-                size: 30,
-              ),
-              minLeadingWidth: 30,
-              contentPadding:
-                  EdgeInsets.only(top: 20, left: 35, right: 35, bottom: 20),
-              title: Text(
-                'Movimientos',
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w300,
+              ],
+            );
+
+            final tileButtonWidget = Column(
+              children: [
+                ListTile(
+                  title: Text(
+                    item['title'],
+                    style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 16,
+                    ),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 18,
+                  ),
+                  minLeadingWidth: 30,
+                  contentPadding:
+                      EdgeInsets.only(top: 15, left: 35, right: 35, bottom: 15),
+                  leading: Icon(
+                    Icons.money_outlined,
+                    size: 30,
+                  ),
+                  onTap: null,
                 ),
-              ),
-              trailing: Icon(
-                Icons.arrow_forward_ios,
-                size: 18,
-              ),
-              onTap: null,
-            ),
-            Divider(
-              height: 1,
-              color: Colors.grey[500],
-            ),
-            Container(
+                Divider(
+                  height: 1,
+                  color: Colors.grey[500],
+                ),
+              ],
+            );
+
+            final tileAmoutWidget = Column(
+              children: [
+                ListTile(
+                  title: Text(
+                    item['title'],
+                    style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 16,
+                    ),
+                  ),
+                  trailing: Text(
+                    item['amount'] + ' €',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
+                  minLeadingWidth: 30,
+                  contentPadding:
+                      EdgeInsets.only(top: 15, left: 35, right: 35, bottom: 15),
+                  leading: Icon(
+                    Icons.money_outlined,
+                    size: 30,
+                  ),
+                  onTap: null,
+                ),
+                Divider(
+                  height: 1,
+                  color: Colors.grey[500],
+                ),
+              ],
+            );
+
+            final tileHeader = Container(
+              padding: EdgeInsets.only(top: 0, left: 15, right: 15, bottom: 0),
               color: Colors.grey[100],
               child: ListTile(
                 title: Text(
-                  'DETALLES',
+                  item['title'],
                 ),
               ),
-            ),
-            Divider(
-              height: 1,
-              color: Colors.grey[500],
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.money_outlined,
-                size: 30,
-              ),
-              minLeadingWidth: 30,
-              contentPadding:
-                  EdgeInsets.only(top: 20, left: 35, right: 35, bottom: 20),
-              title: Text(
-                'Saldo disponible',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w300,
-                ),
-              ),
-              trailing: Text(
-                '33,74 €',
-                style: TextStyle(
-                  fontSize: 18,
-                ),
-              ),
-              onTap: null,
-            ),
-          ],
+            );
+
+            if (item['type'] == 'image') {
+              return tileImageWidget;
+            }
+
+            if (item['type'] == 'amount') {
+              return tileAmoutWidget;
+            }
+
+            if (item['type'] == 'text') {
+              return tileTextWidget;
+            }
+
+            if (item['type'] == 'button') {
+              return tileButtonWidget;
+            }
+
+            return tileHeader;
+          },
         ),
       ),
     );
