@@ -147,61 +147,99 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: ListView(
-        children: [
-          ListTile(
-            leading: Icon(
-              Icons.money_outlined,
-              size: 30,
+      body: Container(
+        color: Colors.white,
+        child: ListView(
+          children: [
+            ListTile(
+              leading: Icon(
+                Icons.money_outlined,
+                size: 30,
+              ),
+              minLeadingWidth: 30,
+              contentPadding:
+                  EdgeInsets.only(top: 20, left: 35, right: 35, bottom: 20),
+              title: Text(
+                'Saldo disponible',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
+              trailing: Text(
+                '33,74 €',
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+              onTap: null,
             ),
-            minLeadingWidth: 30,
-            contentPadding:
-                EdgeInsets.only(top: 20, left: 35, right: 35, bottom: 20),
-            title: Text(
-              'Saldo disponible',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w300,
+            Divider(
+              height: 1,
+              color: Colors.grey[500],
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.money_outlined,
+                size: 30,
+              ),
+              minLeadingWidth: 30,
+              contentPadding:
+                  EdgeInsets.only(top: 20, left: 35, right: 35, bottom: 20),
+              title: Text(
+                'Movimientos',
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
+              trailing: Icon(
+                Icons.arrow_forward_ios,
+                size: 18,
+              ),
+              onTap: null,
+            ),
+            Divider(
+              height: 1,
+              color: Colors.grey[500],
+            ),
+            Container(
+              color: Colors.grey[100],
+              child: ListTile(
+                title: Text(
+                  'DETALLES',
+                ),
               ),
             ),
-            trailing: Text(
-              '33,74 €',
-              style: TextStyle(
-                fontSize: 18,
+            Divider(
+              height: 1,
+              color: Colors.grey[500],
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.money_outlined,
+                size: 30,
               ),
-            ),
-            onTap: null,
-          ),
-          Divider(
-            height: 1,
-            color: Colors.grey[500],
-          ),
-          ListTile(
-            leading: Icon(
-              Icons.money_outlined,
-              size: 30,
-            ),
-            minLeadingWidth: 30,
-            contentPadding:
-                EdgeInsets.only(top: 20, left: 35, right: 35, bottom: 20),
-            title: Text(
-              'Movimientos',
-              style: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.w300,
+              minLeadingWidth: 30,
+              contentPadding:
+                  EdgeInsets.only(top: 20, left: 35, right: 35, bottom: 20),
+              title: Text(
+                'Saldo disponible',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
+                ),
               ),
+              trailing: Text(
+                '33,74 €',
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+              onTap: null,
             ),
-            trailing: Icon(
-              Icons.arrow_forward_ios,
-              size: 18,
-            ),
-            onTap: null,
-          ),
-          Divider(
-            height: 1,
-            color: Colors.grey[500],
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
