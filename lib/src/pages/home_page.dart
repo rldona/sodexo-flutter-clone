@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sodexo_clone/src/widgets/credit_card_widget.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -85,6 +86,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                CreditCardWidget(),
                 Text(
                   'Raúl López',
                   style: TextStyle(
@@ -325,6 +327,8 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             );
+
+            // Crear funcion que cree el widget
 
             if (item['type'] == 'image') {
               return tileImageWidget;
