@@ -86,7 +86,6 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                CreditCardWidget(),
                 Text(
                   'Raúl López',
                   style: TextStyle(
@@ -219,10 +218,7 @@ class _HomePageState extends State<HomePage> {
               color: Color.fromRGBO(242, 243, 249, 1),
               padding:
                   EdgeInsets.only(top: 20, left: 40, right: 40, bottom: 20),
-              child: Image(
-                image: AssetImage(item['title']),
-                fit: BoxFit.cover,
-              ),
+              child: CreditCardWidget(),
             );
 
             final tileTextWidget = Column(
