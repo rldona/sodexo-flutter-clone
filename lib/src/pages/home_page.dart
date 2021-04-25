@@ -136,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                       fontWeight: FontWeight.w300,
                     ),
                   ),
-                  onTap: null,
+                  onTap: () => Navigator.popAndPushNamed(context, '/my-cards'),
                 ),
                 SizedBox(height: 10),
                 ListTile(
@@ -161,7 +161,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                  onTap: null,
+                  onTap: () =>
+                      Navigator.popAndPushNamed(context, '/notifications'),
                 ),
                 SizedBox(height: 10),
                 ListTile(
@@ -174,7 +175,8 @@ class _HomePageState extends State<HomePage> {
                       fontWeight: FontWeight.w300,
                     ),
                   ),
-                  onTap: null,
+                  onTap: () =>
+                      Navigator.popAndPushNamed(context, '/restaurant-list'),
                 ),
                 SizedBox(height: 10),
                 ListTile(
@@ -187,7 +189,8 @@ class _HomePageState extends State<HomePage> {
                       fontWeight: FontWeight.w300,
                     ),
                   ),
-                  onTap: null,
+                  onTap: () =>
+                      Navigator.popAndPushNamed(context, '/my-account'),
                 ),
                 SizedBox(height: 10),
                 ListTile(
@@ -200,7 +203,8 @@ class _HomePageState extends State<HomePage> {
                       fontWeight: FontWeight.w300,
                     ),
                   ),
-                  onTap: null,
+                  onTap: () =>
+                      Navigator.popAndPushNamed(context, '/legal-terms'),
                 ),
               ],
             ),
