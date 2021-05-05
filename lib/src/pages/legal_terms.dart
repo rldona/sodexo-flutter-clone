@@ -8,8 +8,19 @@ class LegalTerms extends StatefulWidget {
 class _LegalTermsState extends State<LegalTerms> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('LegalTerms'),
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        backgroundColor: Colors.white,
+        title: Text('Términos legales', style: TextStyle(color: Colors.black)),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Text('Términos legales'),
+      ),
     );
   }
 }

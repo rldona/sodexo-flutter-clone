@@ -136,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                       fontWeight: FontWeight.w300,
                     ),
                   ),
-                  onTap: () => Navigator.popAndPushNamed(context, '/my-cards'),
+                  onTap: () => Navigator.popAndPushNamed(context, '/home'),
                 ),
                 SizedBox(height: 10),
                 ListTile(
